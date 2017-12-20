@@ -11,12 +11,10 @@ int main(){
 	unsigned char result[32] = {0};
 	strcpy(sendBuf, (char*)"12345678901234567890aabbcc");
 	int length = strlen(sendBuf);
-	//AZLAES * aes = AZLAES::GetAZLAES();
 	CreateAES();
 	printf("%10s : %s\n", "source", sendBuf);
-	//aes->EncData((unsigned char *)sendBuf, strlen(sendBuf));
-        EncData((unsigned char *)sendBuf, result, strlen(sendBuf));
-        //printf("%10s : %s\n", "encode", (char*)result);
+	EncData((unsigned char *)sendBuf, result, strlen(sendBuf));
+	//printf("%10s : %s\n", "encode", (char*)result);
 	printf("%10s : ", "encode");
 	for(int i=0; i<length; i++){
 		printf("%02x ", (unsigned char)result[i]);
@@ -24,15 +22,13 @@ int main(){
 			printf("\n%10s : ", "");
 	}
 	printf("\n");
-        memcpy(sendBuf, result, length);
+	memcpy(sendBuf, result, length);
 	//printf("%s\n", sendBuf);
 	///
 
 
-	//AZLAES * aes = AZLAES::GetAZLAES();
 	memset(result, 0, sizeof(result));
-        //aes->DecData((unsigned char *)sendBuf, result, strlen(sendBuf));
-        CreateAES();
+	CreateAES();
 	EncData((unsigned char *)sendBuf, result, strlen(sendBuf));
 	printf("%10s : %s\n", "decode", (char*)result);
 
